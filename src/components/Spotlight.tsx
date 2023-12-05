@@ -101,7 +101,7 @@ const Spotlight = () => {
           </div>
         </a>
       </div>
-      <div className="xl:w-[41%] w-full overflow-hidden">
+      <div className="w-full  overflow-hidden">
         <div
           {...events}
           ref={ref}
