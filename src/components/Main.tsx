@@ -3,6 +3,7 @@ import { Fragment, useEffect, useState } from "react";
 import { FaSpotify } from "react-icons/fa";
 import { MdSkipNext, MdSkipPrevious } from "react-icons/md";
 import { TfiControlShuffle } from "react-icons/tfi";
+import { GrLinkBottom } from "react-icons/gr";
 import Image1 from "../assets/image1.png";
 import Image2 from "../assets/image2.png";
 import Image3 from "../assets/image3.webp";
@@ -65,22 +66,6 @@ const ImageSlider = styled.div<{
   transform: rotate(${(props) => `${props.$transformRotateY}deg`});
 `;
 
-const ListItem = ({ item }: { item: any }) => {
-  return (
-    <div
-      className={`absolute  w-full transition-all ease-in-out drop-shadow-2xl shadow-black`}
-    >
-      <ImageSlider
-        $transformRotateX={item.rotateX}
-        $transformRotateY={item.rotateY}
-        $transformRotateZ={item.rotateZ}
-      >
-        <img src={item.image} alt="" className="w-[400px] h-[400px]" />
-      </ImageSlider>
-    </div>
-  );
-};
-
 const Main = () => {
   const [theme, setTheme] = useState<string>("");
   const [dataCount, setDataCount] = useState<number>(data.length);
@@ -121,9 +106,13 @@ const Main = () => {
     }
   };
 
+  const handleClick = () => {
+    window.scrollTo({ top: 700, behavior: "smooth" });
+  };
+
   return (
-    <div className={`w-full h-full pb-28 pt-6 px-8 bg-[${theme}]`}>
-      <div className="flex justify-between items-center">
+    <div className={`w-full h-full pb-28 pt-6 px-12 bg-${theme}-500`}>
+      <div className={`flex justify-between items-center `}>
         <div className="flex items-center">
           <div className="text-3xl">
             <FaSpotify />
@@ -135,16 +124,36 @@ const Main = () => {
         <div>
           <ul className="font-medium flex gap-4 ">
             <li>
-              <a href="/">Stories</a>
+              <a
+                href="/"
+                className="font-bold text-[14px] hover:opacity-60 transition-all ease-in-out"
+              >
+                Stories
+              </a>
             </li>
             <li>
-              <a href="/">Listen</a>
+              <a
+                href="/"
+                className="font-bold text-[14px] hover:opacity-60 transition-all ease-in-out"
+              >
+                Listen
+              </a>
             </li>
             <li>
-              <a href="/">Team</a>
+              <a
+                href="/"
+                className="font-bold text-[14px] hover:opacity-60 transition-all ease-in-out"
+              >
+                Team
+              </a>
             </li>
             <li>
-              <a href="/">Tools</a>
+              <a
+                href="/"
+                className="font-bold text-[14px] hover:opacity-60 transition-all ease-in-out"
+              >
+                Tools
+              </a>
             </li>
           </ul>
         </div>
@@ -178,8 +187,13 @@ const Main = () => {
                   (item) =>
                     item.id === `${dataCount}` && (
                       <div key={item.id}>
-                        <p className="font-semibold">{item.title}</p>
-                        <h1 className="text-6xl font-bold w-[450px]">
+                        <a
+                          href=""
+                          className="font-semibold text-with-underline"
+                        >
+                          {item.title}
+                        </a>
+                        <h1 className="text-6xl font-bold w-[450px] text-with-underline cursor-pointer  ">
                           {item.desc}
                         </h1>
                       </div>
@@ -202,6 +216,16 @@ const Main = () => {
                 </Fragment>
               );
             })}
+            <div className="absolute bottom-[-50px] right-[-50px] flex gap-4 items-center">
+              <div className="text-sm font-semibold">SCROOL DOWN</div>
+              <a
+                onClick={handleClick}
+                className="rounded-full border-[1px] border-gray-300 p-4 cursor-pointer hover:bg-black
+               hover:text-white transition-all ease-in-out hover:border-none"
+              >
+                <GrLinkBottom />
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -210,3 +234,19 @@ const Main = () => {
 };
 
 export default Main;
+
+const ListItem = ({ item }: { item: any }) => {
+  return (
+    <div
+      className={`absolute  w-full transition-all ease-in-out drop-shadow-2xl shadow-black`}
+    >
+      <ImageSlider
+        $transformRotateX={item.rotateX}
+        $transformRotateY={item.rotateY}
+        $transformRotateZ={item.rotateZ}
+      >
+        <img src={item.image} alt="" className="w-[400px] h-[400px]" />
+      </ImageSlider>
+    </div>
+  );
+};
