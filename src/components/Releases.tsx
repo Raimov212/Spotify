@@ -37,7 +37,7 @@ const data = [
 
 const Releases = () => {
   return (
-    <div className="px-8 ">
+    <div className="px-12 ">
       <div className="pb-4 flex items-center justify-between">
         <div className="text-2xl font-bold ">New Releases</div>
         <a href="" className="flex items-center gap-2 group">

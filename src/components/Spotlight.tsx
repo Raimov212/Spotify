@@ -82,8 +82,8 @@ const Spotlight = () => {
 
   return (
     <div
-      className="w-full h-full mt-10 xl:flex justify-between xl:px-24 xl:mt-10
-    lg:px-8 mb-48 sm:mb-12 sm:px-4 overflow-hidden md:px-12 scrollHumans"
+      className="w-full h-full my-10 flex flex-col justify-between px-12 
+    overflow-hidden scrollHumans"
     >
       <div className="pb-4 flex items-center justify-between">
         <div>

@@ -72,7 +72,7 @@ const Main = () => {
 
   useEffect(() => {
     data.map((item) => item.id === `${dataCount}` && setTheme(item.theme));
-  }, [dataCount]);
+  }, [dataCount, theme]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -111,7 +111,10 @@ const Main = () => {
   };
 
   return (
-    <div className={`w-full h-full pb-28 pt-6 px-12 bg-${theme}-500`}>
+    <div
+      style={{ backgroundColor: theme }}
+      className={`w-full h-full pb-28 pt-6 px-12`}
+    >
       <div className={`flex justify-between items-center `}>
         <div className="flex items-center">
           <div className="text-3xl">
@@ -159,73 +162,68 @@ const Main = () => {
         </div>
       </div>
       <div className="gap-4 pt-10 flex flex-col justify-center">
-        <div className={`bg-[${theme}]`}>
-          <div>
-            <div className="flex gap-20 pt-20 h-[400px] ">
-              <div className="flex flex-col gap-4 mt-[110px]">
-                <button
-                  onClick={() => handleChangeSliderImage("dec")}
-                  className="text-2xl"
-                >
-                  <MdSkipNext />
-                </button>
-                <button
-                  onClick={() => handleChangeSliderImage("inc")}
-                  className="text-2xl"
-                >
-                  <MdSkipPrevious />
-                </button>
-                <button
-                  onClick={() => handleChangeSliderImage("all")}
-                  className="text-2xl"
-                >
-                  <TfiControlShuffle />
-                </button>
-              </div>
-              <div className="transition-all ease-in">
-                {data?.map(
-                  (item) =>
-                    item.id === `${dataCount}` && (
-                      <div key={item.id}>
-                        <a
-                          href=""
-                          className="font-semibold text-with-underline"
-                        >
-                          {item.title}
-                        </a>
-                        <h1 className="text-6xl font-bold w-[450px] text-with-underline cursor-pointer  ">
-                          {item.desc}
-                        </h1>
-                      </div>
-                    )
-                )}
-              </div>
+        <div>
+          <div className="flex gap-20 pt-20 h-[400px] ">
+            <div className="flex flex-col gap-4 mt-[110px]">
+              <button
+                onClick={() => handleChangeSliderImage("dec")}
+                className="text-2xl"
+              >
+                <MdSkipNext />
+              </button>
+              <button
+                onClick={() => handleChangeSliderImage("inc")}
+                className="text-2xl"
+              >
+                <MdSkipPrevious />
+              </button>
+              <button
+                onClick={() => handleChangeSliderImage("all")}
+                className="text-2xl"
+              >
+                <TfiControlShuffle />
+              </button>
             </div>
-            <div className="pl-32 pt-24 flex gap-2 items-center">
-              <div>{dataCount}</div>
-              <div className="bg-gray-400 w-[30px] rounded-lg h-[2px]"></div>
-              <div>{data.length}</div>
+            <div className="transition-all ease-in">
+              {data?.map(
+                (item) =>
+                  item.id === `${dataCount}` && (
+                    <div key={item.id}>
+                      <a href="" className="font-semibold text-with-underline">
+                        {item.title}
+                      </a>
+                      <h1 className="text-6xl font-bold w-[450px] text-with-underline cursor-pointer  ">
+                        {item.desc}
+                      </h1>
+                    </div>
+                  )
+              )}
             </div>
           </div>
+          <div className="pl-32 pt-24 flex gap-2 items-center">
+            <div>{dataCount}</div>
+            <div className="bg-gray-400 w-[30px] rounded-lg h-[2px]"></div>
+            <div>{data.length}</div>
+          </div>
+        </div>
 
-          <div className={`relative bg-[${theme}] mr-20`}>
-            {data.slice(0, dataCount).map((item) => {
-              return (
-                <Fragment key={item.id}>
-                  <ListItem item={item} />
-                </Fragment>
-              );
-            })}
-            <div className="absolute bottom-[-50px] right-[-50px] flex gap-4 items-center">
-              <div className="text-sm font-semibold">SCROOL DOWN</div>
-              <a
-                onClick={handleClick}
-                className="rounded-full border-[1px] border-gray-300 p-4 cursor-pointer hover:bg-black
+        <div className={`relative bg-[${theme}] mr-20`}>
+          {data.slice(0, dataCount).map((item) => {
+            return (
+              <Fragment key={item.id}>
+                <ListItem item={item} />
+              </Fragment>
+            );
+          })}
+          <div className="absolute bottom-[-50px] right-[-50px] flex gap-4 items-center">
+            <div className="text-sm font-semibold">SCROOL DOWN</div>
+            <a
+              onClick={handleClick}
+              className="rounded-full border-[1px] border-gray-300 p-4 cursor-pointer hover:bg-black
                hover:text-white transition-all ease-in-out hover:border-none"
-              >
-                <GrLinkBottom />
-              </a>
-            </div>
+            >
+              <GrLinkBottom />
+            </a>
           </div>
         </div>
       </div>
